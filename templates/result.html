@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quiz Maker — Loading..</title>
+    <meta name="msapplication-config" content="/static/icons/browserconfig.xml">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="/static/css/Bootstrap/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- animation -->
+    <link rel="stylesheet" href="/static/css/animation.css">
+
+    <!-- Responsive -->
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
+    <link rel="manifest" href="/static/icons/site.webmanifest">
+    <link rel="mask-icon" href="/static/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/static/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#9f00a7">
+    <meta name="msapplication-config" content="/static/icons/browserconfig.xml">
+
+    <style>
+        @media screen and (-width: 768px) {
+            #none-el {
+                height: 5cm;
+            }
+        }
+
+        .circle {
+            height: 30px;
+            width: 30px;
+            border-radius: 100%;
+        }
+
+        .level-text {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 35px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="steps">
+            <div
+                style="background-color: rgb(255, 0, 0);padding: 20px;width: 60%;position: fixed;top: 20px;color: white;left: 22%;border-radius: 20px;">
+                <h1 style="text-align: center;font-weight: bolder;">Your score is {{correct}}/{{questions}}</h1>
+            </div>
+            <div class="result" style="height: 19cm;border: 4px solid rgb(255, 0, 0);border-radius: 20px;" id="result">
+                <h2 style="visibility: hidden; height: 2cm;" id="none-el">none</h2>
+                <script>
+                    if (window.innerWidth < 768) {
+                        document.getElementById('none-el').style.height = '3cm';
+                        document.getElementById('result').style.height = '21cm';
+                    }
+                </script>
+                <div class="flex" style="text-align: center;">
+                    <img src="/static/images/check.png" alt="check" style="height: 35px;margin-top: -7px;">
+                    <span id="tag" style="font-size: 25px;font-weight: bolder;color: {{color}};">{{tag}} </span>
+                </div>
+                <br>
+                <h3 style="text-align: center; color: rgb(0, 77, 83);font-size: 2cm;font-weight: bolder;">{{username}}
+                </h3>
+                <h3 style="text-align: center;">YOUR OVERALL SCORE</h3>
+                <h3 style="text-align: center; color: {{color}};font-size: 3cm;font-weight: bolder;">{{percent}}%</h3>
+                <p style="text-align: center;color: {{color}};font-size: 25px;font-weight: bold;">Low</p>
+
+                <div style="display: flex;flex-direction: row; width: 100%;justify-content: center;margin-left: -20px;">
+
+                    <div>
+                        <div style="background-color: red;" class="circle">
+                            <span class="level-text">Low</span>
+                        </div>
+                    </div>
+                    <div style="margin-left: 60px;">
+
+                        <div style="background-color: rgb(255, 89, 0);" class="circle">
+                            <span class="level-text">Medium</span>
+                        </div>
+                    </div>
+                    <div style="margin-left: 100px;">
+                        <div style="background-color: rgb(60, 196, 52);" class="circle">
+                            <span class="level-text">High</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <div class="flex" style="text-align: center;">
+                    <button class="btn btn-primary" style="height: 40px;width: 100px;font-size: 20px;" id="url-link"
+                        title="Copy Link" onclick="copy()">
+                        <i class="fas fa-link" id="link-icon"></i>
+                        <i class="fas fa-check-circle" id="circle-icon" style="display: none;"></i>
+                    </button>
+                    <a title="Send to Whatsapp" target="_blank" id="wa-link"
+                        href="https://wa.me/?text=*Hi! Try this Quiz http://127.0.0.1:5000/q/python-mcq-data-structures-11-NaradAI-Quiz . I got 0.0%. Let's check how much you get!!!*"><button
+                            class="btn btn-success" style="height: 40px;width: 100px;font-size: 20px;"><i
+                                class="fa-brands fa-whatsapp"></i></button></a>
+                    <button class="btn btn-primary" id="re-start" style="height: 40px;width: 100px;font-size: 20px;"><i
+                            class="fas fa-refresh"></i></button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div id="lmh">
+                <div>
+                    <div style="height: 40px;width: 40px;border-radius: 100%;background-color: red;position: fixed;">
+                    </div>
+                    <span style="margin-left: 45px;font-size: 30px;font-weight: bold;">Incorrect</span>
+                </div>
+                <br>
+                <div>
+                    <div
+                        style="height: 40px;width: 40px;border-radius: 100%;background-color: rgb(60, 196, 52);;position: fixed;">
+                    </div>
+                    <span style="margin-left: 45px;font-size: 30px;font-weight: bold;">Correct</span>
+                </div>
+            </div>
+            <hr>
+            <br>
+            <br>
+            <form novalidate="" onsubmit="return false" class="show-section" id="stepForm2">
+
+            </form>
+
+        </section>
+    </div>
+
+    <script>
+
+        var db = `{{data | safe}}`
+        function replaceCaretWithSup(text) {
+            // Use a regular expression to find ^ followed by any number or variable
+            var pattern = /(\w+)\^(\w+|\d+)/g;
+
+            // Replace ^ with <sup> and </sup>
+            var replacedText = text.replace(pattern, '$1<sup>$2</sup>');
+
+            return replacedText;
+        }
+        function replaceCaretWithSup2(text) {
+            // Use a regular expression to find (something)^n
+            var pattern = /\(([^)]+)\)\^(\w+|\d+)/g;
+
+            // Replace ^ with <sup> and </sup>
+            var replacedText = text.replace(pattern, '($1)<sup>$2</sup>');
+
+            return replacedText;
+        }
+        db = replaceCaretWithSup(db);
+        db = replaceCaretWithSup2(db);
+
+        db = JSON.parse(db)
+        const ans = JSON.parse(`{{ans | safe}}`)    
+        console.log(ans)
+        console.log(db)
+        document.title = `Result for {{username}} of ${db['title']} quiz - AI Quiz Maker`
+        document.getElementById('wa-link').setAttribute('href', `https://wa.me/?text=*Hi! check my result of ${db['title']} -> ${window.location.href} . I got {{percent}}%. Let's check how much you get!!!*`)
+        document.getElementById('re-start').setAttribute('onclick', `window.location = '/q/${db['url']}'`)
+        function copy() {
+            const textarea = document.createElement('textarea');
+            textarea.value = window.location.href;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            // Run inline code after a delay of 3 seconds
+            document.getElementById('link-icon').style.display = 'none'
+            document.getElementById('circle-icon').style.display = 'block'
+            setTimeout(function () {
+                document.getElementById('circle-icon').style.display = 'none'
+                document.getElementById('link-icon').style.display = 'block'
+            }, 1000);
+        }
+        var raw = ``
+
+        for (let index = 1; index <= db['all']; index++) {
+            var flag1 = ''
+            var flag2 = ''
+            var flag3 = ''
+            var flag4 = ''
+
+            // Wrong
+            var wflag1 = ''
+            var wflag2 = ''
+            var wflag3 = ''
+            var wflag4 = ''
+
+
+
+            if (db[index]['ans'] == ans[index]) {
+
+            }
+            for (let index2 = 1; index2 <= 4; index2++) {
+                if (db[index][index2] == db[index]['ans']) {
+                    if (index2 == 1) {
+                        flag1 = 'background-color: rgb(60, 196, 52);'
+                    }
+                    if (index2 == 2) {
+                        flag2 = 'background-color: rgb(60, 196, 52);'
+                    }
+                    if (index2 == 3) {
+                        flag3 = 'background-color: rgb(60, 196, 52);'
+                    }
+                    if (index2 == 4) {
+                        flag4 = 'background-color: rgb(60, 196, 52);'
+                    }
+                }
+
+            }
+            for (let index2 = 1; index2 <= 4; index2++) {
+                if (db[index]['ans'] == ans[index]) {
+                    break
+                }
+                if (ans[index] == null) {
+                    break;
+                }
+                if (db[index][index2] == ans[index]) {
+                    if (index2 == 1) {
+                        wflag1 = 'background-color: red; !important'
+                    }
+                    if (index2 == 2) {
+                        wflag2 = 'background-color: red; !important'
+                    }
+                    if (index2 == 3) {
+                        wflag3 = 'background-color: red; !important'
+                    }
+                    if (index2 == 4) {
+                        wflag4 = 'background-color: red; !important'
+                    }
+                }
+            }
+
+
+
+            raw += `<fieldset id="step${index}">
+                        <!-- Question -->
+                        <h1 class="question">${db[index]['Q']}</h1>
+    
+                        <!-- Options -->
+                        <div class="options d-flex flex-wrap justify-content-between">
+                            <div class="option animate">
+                                <input type="radio" name="op${index}" id="step${index}op1" value="${db[index][1]}" style="${flag1};${wflag1}" disabled>
+                                <label style="color: black;">${db[index][1]}</label>
+                            </div>
+                            <div class="option animate delay-100">
+                                <input type="radio" name="op${index}" id="step${index}op2" value="${db[index][2]}" style="${flag2};${wflag2}" disabled>
+                                <label style="color: black;">${db[index][2]}</label>
+                            </div>
+                            <div class="option animate delay-200">
+                                <input type="radio" name="op${index}" id="step${index}op3" value="${db[index][3]}" style="${flag3};${wflag3}" disabled>
+                                <label style="color: black;">${db[index][3]}</label>
+                            </div>
+                            <div class="option animate delay-300">
+                                <input type="radio" name="op${index}" id="step${index}op4" value="${db[index][4]}" style="${flag4};${wflag4}" disabled>
+                                <label style="color: black;">${db[index][4]}</label>
+                            </div>
+                        </div>
+    
+                       
+                    </fieldset>`;
+        }
+        document.getElementById('stepForm2').innerHTML = raw
+
+        if(localStorage.getItem('result')){
+            data_result = JSON.parse(localStorage.getItem('result'))
+            data_result["{{url}}"] = "true"
+            localStorage.setItem('result',JSON.stringify(data_result))
+
+        }
+        
+        if(!localStorage.getItem('result')){
+            localStorage.setItem('result',`{"{{url}}": "true"}`)
+        }
+        
+
+    </script>
+</body>
+
+</html>

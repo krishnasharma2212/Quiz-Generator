@@ -1,0 +1,538 @@
+<html lang="en">
+
+<head>
+  <script src="/{{url}}/quiz.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/static/images/favicon.png">
+
+  <title>{{title}} Quiz - NaradAI Quiz Maker</title>
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://quiz.naradai.co/q/{{url}}">
+  <meta name="title" content="{{title}} Quiz - NaradAI Quiz Maker" />
+
+  <meta name="keywords"
+    content="{{keywords}}">
+  <meta name="description"
+    content="{{dec}}" />
+  <meta name='Classification' content='Education'>
+  <meta name='author' content='Krishna Sharma, krishnasharma.active@gmail.com'>
+
+
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://quiz.naradai.co" />
+  <meta property="og:title"
+    content="{{title}} Quiz - NaradAI Quiz Maker" />
+  <meta property="og:description"
+    content="{{dec}}" />
+  <meta property="og:image" content="/static/images/home.png" />
+  <meta property="og:type" content="website">
+  <link rel="shortlink" href="https://quiz.naradai.co/q/{{url}}">
+  <meta property="og:site_name" content="NaradAI Quiz Maker">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="format-detection" content="telephone=no">
+  <meta name='coverage' content='Worldwide'>
+  <meta name='distribution' content='Global'>
+
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://quiz.naradai.co" />
+  <meta property="twitter:title"
+    content="Try this - {{title}} Quiz - NaradAI Quiz Maker" />
+  <meta property="twitter:description"
+    content="Try this - {{title}} Quiz - NaradAI Quiz Maker" />
+  <meta property="twitter:image" content="/static/images/home.png" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
+  <link rel="manifest" href="/static/icons/site.webmanifest">
+  <link rel="mask-icon" href="/static/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/static/icons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#9f00a7">
+  <meta name="msapplication-config" content="/static/icons/browserconfig.xml">
+
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/static/css/Bootstrap/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Custom Style -->
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <!-- animation -->
+  <link rel="stylesheet" href="/static/css/animation.css">
+
+  <!-- Responsive -->
+  <link rel="stylesheet" href="/static/css/responsive.css">
+
+  <!-- result CSS -->
+  <link rel="stylesheet" href="/static/css/result_style.css">
+  <link href="/static/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+  <style>
+    /* Style for the fixed navbar */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      padding: 10px;
+      color: white;
+      text-align: center;
+      z-index: 1000;
+      /* Set a high z-index to ensure it's above other elements */
+    }
+
+    /* Style for the fixed navbar */
+    #timer-toast {
+      display: block;
+      position: fixed;
+      top: 0.1cm;
+      left: 0.1cm;
+      /* transform: translate(-50%, -50%); */
+      z-index: 1000;
+      width: 5cm;
+      max-width: 50%;
+      /* Set a high z-index to ensure it's above other elements */
+    }
+
+    .modalContainer {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      max-width: 100%;
+      /* text-align: center; */
+    }
+  </style>
+</head>
+
+<body style="overflow: auto; display: none;background-color: #ffa600;" id="body">
+  <nav class="navbar navbar-expand-sm navbar-light" aria-label="Thirteenth navbar example"
+    style="background-color: #ffa600;border-radius: 11px;" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/static/images/favicon.png" alt="Icon" style="height: 50px;">
+      </a>
+      <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample03">
+        <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Signup</a>
+            </li>
+          </ul> -->
+        <ul class="navbar-nav d-flex flex-row ms-auto me-3">
+          <li class="nav-item me-3 me-lg-0 dropdown">
+            <a class="nav-link" href="/" aria-expanded="false">
+              <i class="fas fa-home"></i> Home
+            </a>
+          </li>
+          <li class="nav-item me-3 me-lg-0 dropdown">
+            <a class="nav-link" href="#share" onclick="send_quiz()" aria-expanded="false">
+              <i class="fas fa-paper-plane"></i> Send Quiz
+
+            </a>
+          </li>
+
+          <li class="nav-item me-3 me-lg-0 dropdown">
+            <input type="file" id="jsonFile" name="jsonFile" oninput="uploadFile()" accept=".json"
+              style="position: fixed;visibility: hidden;">
+
+            <a class="nav-link" href="/upload" aria-expanded="false"
+              onclick="event.preventDefault();document.getElementById('jsonFile').click()">
+              <i class="fas fa-upload"></i> Upload Quiz
+
+            </a>
+          </li>
+          <li class="nav-item me-3 me-lg-0 dropdown" onclick="event.preventDefault();download_db()" id="download-li">
+            <a class="nav-link" href="/download.json" id="down_link" aria-expanded="false">
+              <i class="fas fa-download"></i> Download Quiz
+
+            </a>
+          </li>
+          <li class="nav-item me-3 me-lg-0 dropdown" id="nav-settings">
+            <a class="nav-link" href="#settings" data-toggle="modal" onclick="event.preventDefault();toggle_settings()">
+              <i class="fas fa-gear"></i> Settings
+
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <div id="main-data">
+
+    <!-- Navbar -->
+    <main class="overflow-hidden" style="margin-top: -10px;">
+      <div class="container">
+        <!-- Steps Start -->
+        <section class="steps">
+          <form novalidate="" onsubmit="return false" class="show-section" id="stepForm">
+          </form>
+
+          <div class="backgroundSlab"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- result -->
+    <div class="loadingresult">
+      <img src="/static/images/loading.gif" alt="loading">
+    </div>
+    <!-- For show class - result_page_show -->
+    <div class="result_page" id="result" style="background-color: #ffa600;">
+
+      <div class="container" style="background-color: #ffa600;">
+        <div class="result_inner" style="border-radius: 21px;">
+          <!-- header -->
+          <header class="resultheader" id="header">
+            Your Result is there <span id="marks">5/10</span>
+            <div class="h-border"></div>
+            <button class="btn btn-success"
+              onclick="document.getElementById('check-answer').scrollIntoView({ behavior: 'smooth' });">Check Answer
+              Quiz</button>
+          </header>
+
+          <div class="result_content">
+            <div class="result_msg">
+              <img src="/static/images/check.png" alt="check">
+              <div id="tag">Wow! You are Brilliant!</div>
+            </div>
+            <span>your overall score</span>
+            <div class="u_prcnt" id="percent">0%</div>
+            <div class="prcnt_bar">
+              <div class="fill"></div>
+            </div>
+            <div class="prcnt_bar_lvl" id="grade">Medium</div>
+            <div class="flex">
+              <button class="btn btn-primary" style="height: 40px;width: 100px;font-size: 20px;" id="url-link"
+                title="Copy Link">
+                <i class="fas fa-link" id="link-icon"></i>
+                <i class="fas fa-check-circle" id="circle-icon" style="display: none;"></i>
+              </button>
+              <a title="Send to Whatsapp" target="_blank" id="wa-link"><button class="btn btn-success"
+                  style="height: 40px;width: 100px;font-size: 20px;"><i class="fa-brands fa-whatsapp"></i></button></a>
+              <a href="" title="Re-start"><button class="btn btn-primary"
+                  style="height: 40px;width: 100px;font-size: 20px;"><i class="fas fa-refresh"></i></button></a>
+            </div>
+
+            <div class="lvl_overview" id="lmh">
+              <div class="lvl-single">
+                <div class="lvl-color low"></div>
+                <div class="lvl-name">Low</div>
+                <div class="lvl-line"></div>
+              </div>
+              <div class="lvl-single">
+                <div class="lvl-color medium"></div>
+                <div class="lvl-name">Medium</div>
+                <div class="lvl-line"></div>
+              </div>
+              <div class="lvl-single">
+                <div class="lvl-color high"></div>
+                <div class="lvl-name">High</div>
+              </div>
+            </div>
+          </div>
+          <!-- header -->
+          <div id="check-answer">
+            <header class="resultheader" id="header2">
+              Answers<span id="marks">All</span>
+              <div class="h-border"></div>
+            </header>
+
+            <div class="container">
+
+              <!-- Steps Start -->
+              <section class="steps">
+                <div class="lvl_overview" id="lmh">
+                  <div class="lvl-single">
+                    <div class="lvl-color low" style="min-width: 30;height: 30;border-radius: 50%;"></div>
+                    <div class="lvl-name">Wrong</div>
+                  </div>
+                  <div class="lvl-single">
+                    <div class="lvl-color high" style="min-width: 30;height: 30;border-radius: 50%;"></div>
+                    <div class="lvl-name">Correct</div>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <form novalidate="" onsubmit="return false" class="show-section" id="stepForm2">
+                </form>
+
+                <div class="backgroundSlab"></div>
+              </section>
+            </div>
+
+            <footer class="resultfooter"></footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="timer-toast" style="display: none;">
+    <div class="toast-header">
+      <img src="/static/images/favicon.png" class="rounded mr-2" alt="Icon" style="height: 30px;">
+      <strong class="mr-auto">Timer</strong>
+
+    </div>
+    <div class="toast-body">
+      <span id="time-left">5</span> min left
+    </div>
+  </div>
+
+  <div class="modalContainer" id="settings" style="z-index: 10000000;">
+    <div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin"
+      style="width:10cm;">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+          <div class="modal-header p-5 pb-4 border-bottom-0">
+            <h1 class="fw-bold mb-0 fs-2">Settings</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+              onclick="cross()"></button>
+          </div>
+
+
+          <div class="container">
+            <div>
+              <label class="switch">
+                <input type="checkbox" id="timer_chk" onchange="set_timer()">
+                <span class="slider"></span>
+              </label> Set Timer
+            </div>
+            <br>
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" id="timer-input" placeholder="Enter Time in Minutes" disabled>
+            </div>
+            <div>
+              <label class="switch">
+                <input type="checkbox" onchange="set_timer()" id="any-down" checked>
+                <span class="slider"></span>
+              </label> Anyone can download
+            </div>
+            <br>
+            <br>
+            <button type="button" class="btn btn-outline-primary" onclick="save_settings()"
+              style="width: 100%;">Save</button>
+            <br>
+            <br>
+            <button type="button" class="btn btn-outline-secondary" onclick="cross()"
+              style="width: 100%;">Close</button>
+            <br>
+            <br>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modalContainer" id="start-model" style="display: block;">
+    <div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" style="width:10cm;">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+          <div class="modal-header p-3 pb-4 border-bottom-0">
+            <h1 class="fw-bold mb-0 fs-2">Start Quiz</h1>
+          </div>
+          <div class="container">
+            <form action="" onsubmit="event.preventDefault();start_quiz();">
+              <p>Are you ready to start quiz. After Starting quiz you can't able to stop timer or quiz.</p>
+              <div class="flex">
+
+                <input type="text" name="name" class="form-control" id="username" placeholder="Enter your name"
+                  required>
+                <br>
+
+                <button class="btn btn-primary" type="submit">Start</button>
+                <button class="btn btn-secondary" type="submit" onclick="toggleFullscreen()">Start FullScreen</button>
+              </div>
+            </form>
+            <br>
+            <br>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script>
+      let remainingTime = null
+      if (localStorage.getItem('{{url}}')) {
+        owner = true
+      }
+      if (owner == false) {
+        document.getElementById('nav-settings').style.display = 'none'
+      }
+      if (owner == true) {
+        if (timer != null && timer != '') {
+
+          if (!isNaN(timer)) {
+
+            document.getElementById('timer_chk').checked = true
+            document.getElementById('timer-input').value = timer
+          }
+        }
+
+        if (acc == 'true') {
+          document.getElementById('any-down').checked = true
+        }
+        if (acc == 'false') {
+          document.getElementById('any-down').checked = false
+        }
+      }
+
+      if (timer != null && timer != '') {
+        if (!isNaN(timer)) {
+          remainingTime = parseFloat(timer) * 60
+          // Calculate minutes and remaining seconds
+          var minutes2 = Math.floor(remainingTime / 60);
+          var seconds2 = remainingTime % 60;
+          document.getElementById('time-left').innerText = `${minutes2}:${seconds2 < 10 ? '0' : ''}${seconds2}`
+          document.getElementById('timer-toast').style.display = 'block'
+
+        } else {
+          console.log(`${timer} is not a number.`);
+        }
+      }
+
+      if (acc == 'false') {
+        document.getElementById('download-li').style.display = 'none'
+
+      }
+      var share_url = window.location.href
+
+      function save_settings() {
+        chk_any = document.getElementById('any-down').checked
+        window.location = `/q/{{url}}?t=${document.getElementById('timer-input').value}&p=${chk_any}`;
+      }
+      function set_timer() {
+
+        if (document.getElementById('timer_chk').checked === true) {
+          document.getElementById('timer-input').disabled = false
+          document.getElementById('timer-input').focus()
+
+
+        }
+        if (document.getElementById('timer_chk').checked === false) {
+          document.getElementById('timer-input').disabled = true
+          document.getElementById('timer-input').value = null;
+          document.getElementById('body').focus()
+
+        }
+      }
+
+      function toggle_settings() {
+        model = true
+        document.getElementById('settings').style.display = 'block'
+        document.getElementById('main-data').style.opacity = '0.5';
+        document.getElementById('main-data').style.pointerEvents = 'none'
+
+      }
+      document.getElementById('start-model').style.display = 'block'
+      document.getElementById('main-data').style.opacity = '0.4';
+      document.getElementById('main-data').style.pointerEvents = 'none'
+      function start_quiz() {
+        document.getElementById('start-model').style.display = 'none';
+        username = document.getElementById('username').value
+        model = false
+        cross()
+        if (timer != null && timer != '') {
+          countdownInterval = setInterval(updateCountdown, 1000);
+        }
+      }
+      // toggle_settings()
+      function cross() {
+        document.getElementById('settings').style.display = 'none';
+        if (document.getElementById('start-model').style.display == 'none') {
+          model = false
+          document.getElementById('main-data').style.opacity = '1';
+          document.getElementById('main-data').style.pointerEvents = 'auto'
+
+        }
+      }
+
+
+      function toggleFullscreen() {
+        if (document.fullscreenElement) {
+          // If there is an element in fullscreen, exit fullscreen
+          document.exitFullscreen();
+        } else {
+          document.body.requestFullscreen()
+            .catch(err => {
+              console.error('Error attempting to enable full-screen mode:', err);
+            });
+        }
+      }
+      document.addEventListener('fullscreenchange', handleFullscreenChange);
+      function handleFullscreenChange() {
+        if (!document.fullscreenElement) {
+          // Executing your action when the user exits fullscreen
+          document.getElementById('navbar').style.display = 'block'
+          document.getElementById('body').style.overflow = 'auto'
+          // Add your custom code or function call here
+        }
+        if (document.fullscreenElement) {
+          // Executing your action when the user exits fullscreen
+          document.getElementById('navbar').style.display = 'none'
+          document.getElementById('body').style.overflow = 'hidden'
+          // Add your custom code or function call here
+        }
+      }
+
+      // Update the countdown every second
+      function updateCountdown() {
+        if (timer != null && timer != '') {
+          const countdownElement = document.getElementById('time-left')
+          // Check if the countdown has reached zero
+          if (remainingTime <= 0) {
+            clearInterval(countdownInterval);
+            countdownElement.innerHTML = 'Countdown complete!';
+            chk_ans()
+          } else {
+            // Decrement the remaining time
+            remainingTime--;
+          }
+          // Calculate minutes and remaining seconds
+          const minutes = Math.floor(remainingTime / 60);
+          const seconds = remainingTime % 60;
+
+          // Display the countdown in the specified element
+          countdownElement.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+
+        }
+
+      }
+
+    </script>
+</body>
+
+</html>

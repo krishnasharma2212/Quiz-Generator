@@ -1,0 +1,98 @@
+@media (min-width: 1600px) {
+    .container {
+      max-width: 1500px;
+    }
+  }
+  
+  @media (max-width: 1440px) {
+    .question {
+      font-size: 50px;
+    }
+  }
+  @media (max-width: 1200px) {
+    .avatar {
+      display: none;
+    }
+    .show-section > fieldset {
+      width: 90%;
+    }
+    .question {
+      font-size: 40px;
+    }
+    .option {
+      width: 45%;
+    }
+    .option label {
+      font-size: 24px;
+    }
+    .option label::before {
+      margin-right: 25px;
+      font-size: 30px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .show-section > fieldset {
+      width: 100%;
+    }
+    .steps {
+      padding: 50px 20px;
+    }
+    .options {
+      margin-top: 40px;
+    }
+    .option label {
+      font-size: 18px;
+    }
+    .option label::before {
+      margin-right: 25px;
+      font-size: 24px;
+    }
+    .option {
+      width: 48%;
+      height: 70px;
+    }
+    .question {
+      font-size: 35px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .question {
+      font-size: 30px;
+      width: 100%;
+    }
+    .option label::before {
+      margin-right: 15px;
+      font-size: 24px;
+      width: 50px;
+    }
+    .nextPrev {
+      gap: 50px;
+    }
+    .nextPrev button {
+      font-size: 70px;
+    }
+    .stepCount {
+      font-size: 45px;
+    }
+  }
+  @media (max-width: 576px) {
+  }
+  
+  @media (max-width: 480px) {
+    .question {
+      font-size: 20px;
+    }
+    .option {
+      width: 100%;
+    }
+  
+    .nextPrev {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+    }
+  }

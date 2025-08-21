@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sen:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --primary-color: rgb(255, 0, 0);
+  --secondary-color: rgb(229, 53, 53);
+}
+
+body {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(../images/bg.png);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 0;
+}
+.steps {
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding: 50px;
+  padding-top: 80px;
+  padding-bottom: 30px;
+  position: relative;
+  z-index: 10;
+  transform-style: preserve-3d;
+}
+#step1 .prev {
+  opacity: 0;
+  pointer-events: none;
+}
+.backgroundSlab {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  transform: translateZ(-1px);
+}
+.backgroundSlab::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(209, 18, 27);
+  border-radius: 20px;
+  z-index: 1;
+  transform: rotate(-1.5deg);
+}
+.backgroundSlab::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 186, 0);
+  border-radius: 20px;
+  z-index: 2;
+  transform: rotate(1.5deg);
+}
+.show-section > fieldset {
+  width: 80%;
+  margin: 0 auto;
+}
+.question {
+  font-size: 60px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+}
+.options {
+  margin-top: 80px;
+  margin-bottom: 15px;
+}
+.option {
+  width: 44%;
+  position: relative;
+  height: 101px;
+  margin-bottom: 25px;
+  display: grid;
+  align-content: center;
+}
+.option input {
+  -webkit-appearance: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
+  background-color: rgb(223, 220, 220);
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.option input::before {
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  border-radius: inherit;
+  transition: 0.5s;
+}
+
+.option label {
+  font-size: 32px;
+  color: rgb(163, 163, 163);
+  font-weight: 500;
+  position: relative;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: inherit;
+  pointer-events: none;
+}
+.option label::before {
+  content: "X";
+  display: inline-block;
+  background-color: rgb(163, 163, 163);
+  width: 88px;
+  height: inherit;
+  display: grid;
+  place-content: center;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  font-size: 39px;
+  transition: 0.5s;
+  margin-right: 50px;
+}
+.option:nth-child(1) label::before {
+  content: "A";
+}
+.option:nth-child(2) label::before {
+  content: "B";
+}
+.option:nth-child(3) label::before {
+  content: "C";
+}
+.option:nth-child(4) label::before {
+  content: "D";
+}
+.option input:checked:before {
+  width: 100%;
+}
+
+.option input:checked ~ label {
+  color: rgb(255, 255, 255);
+}
+.option input:checked ~ label::before {
+  color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  background-color: var(--secondary-color);
+}
+.nextPrev {
+  display: flex;
+  align-items: center;
+  gap: 90px;
+  justify-content: center;
+  width: 100%;
+}
+.nextPrev button {
+  font-size: 90px;
+  color: rgb(156, 156, 156);
+  border: 0;
+  background-color: transparent;
+  height: auto;
+  transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.nextPrev .prev:hover {
+  transform: translateX(-15px);
+}
+.nextPrev .next:hover,
+.nextPrev .apply:hover {
+  transform: translateX(15px);
+}
+.nextPrev .next,
+.nextPrev .apply {
+  color: rgb(242, 171, 0);
+}
+.stepCount {
+  font-size: 56.276px;
+  color: rgb(0, 0, 0);
+}
+.avatar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+#error {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
