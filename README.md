@@ -91,25 +91,27 @@ To get a local copy up and running follow these simple steps.
 
 ## Project Structure
 
+```
 .
-├── app.py              # Main Flask application file
-├── db/                 # Folder for JSON database files
-│   ├── no.json
-│   ├── quiz/
+├── app.py              # Main Flask application logic
+├── db/                 # Directory for JSON-based data storage
+│   ├── no.json           # Counter for generating unique quiz URLs
+│   ├── quiz/           # Directory to store individual quiz data files
 │   │   └── ...
-│   ├── quiz_meta.json
-│   └── result.json
-├── static/             # Static files (CSS, JS, images)
+│   ├── quiz_meta.json  # Metadata and index for all created quizzes
+│   └── result.json     # Stores the results of completed quizzes
+├── static/             # Contains static assets (CSS, client-side JS, images)
 │   └── ...
-└── templates/          # HTML templates
-    ├── create.html
-    ├── index.html
-    ├── old.html
-    ├── quiz.html
-    ├── quiz.js
-    ├── result.html
-    └── stats.html
-
+├── templates/          # Contains all Jinja2 HTML templates for the frontend
+│   ├── create.html     # Page for creating a new quiz
+│   ├── index.html      # The landing/home page
+│   ├── old.html        # Page to display a user's past quizzes
+│   ├── quiz.html       # The main quiz-taking interface
+│   ├── quiz.js         # JavaScript logic dynamically generated for each quiz
+│   ├── result.html     # Page to display quiz results and feedback
+│   └── stats.html      # Page to show statistics for a specific quiz
+└── requirements.txt    # Lists the Python dependencies for the project
+```
 
 ## Contributing
 
