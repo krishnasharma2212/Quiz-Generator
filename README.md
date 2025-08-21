@@ -3,7 +3,7 @@
 
 An intelligent web application that leverages Google's Gemini API to automatically generate interactive quizzes on any subject. This project is built with Python and the Flask web framework.
 
-![AI Quiz Maker](https://i.imgur.com/your-image-url.png)
+![AI Quiz Maker](images/home.png)
 
 ## Table of Contents
 
